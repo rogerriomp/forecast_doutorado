@@ -1,0 +1,28 @@
+\subsection{Robustness and Sensitivity Analysis}
+\label{sec:robustness_analysis}
+
+\hl{In response to the reviewers' request for a more comprehensive robustness assessment, we conducted a feature-ablation sensitivity analysis to evaluate the stability of our model and the relative importance of individual features. This analysis measures the impact on the model's F1-score when each feature is individually removed from the dataset, thereby quantifying the model's dependence on that feature. A lower sensitivity score indicates greater robustness, as the model's performance is not disproportionately reliant on any single input.}
+
+\hl{The analysis was performed across all three feature sets and temporal granularities. The results, summarized in Figure \ref{fig:robustness_analysis}, reveal two key findings regarding the robustness of our methodology.}
+
+% --- OPÇÃO 1: Gráfico de Robustez Compacto (Ideal para uma coluna) ---
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{robustness_compact_final.png}
+\caption{Model Robustness: Feature Sensitivity Analysis. This chart displays the average sensitivity (percentage change in F1-score upon feature removal) for each feature set across different granularities. The error bars represent the standard deviation, indicating the stability of the feature set's importance. Lower bars with smaller error margins signify greater robustness.}
+\label{fig:robustness_analysis}
+\end{figure}
+
+\hl{First, our proposed feature set demonstrates superior robustness compared to the benchmark sets, particularly the technical-indicator-heavy set from Study 2. As shown in Figure \ref{fig:robustness_analysis}, our feature set consistently exhibits a lower average sensitivity and, crucially, a smaller standard deviation across the 5-minute and 15-minute granularities. This indicates that our model's performance is more stable and less dependent on any single feature. Study 2's feature set, by contrast, shows very high sensitivity, especially at 15-minute granularity, suggesting that its performance is fragile and heavily reliant on a few key indicators like the MACD.}
+
+\hl{Second, the analysis highlights the core predictive drivers within our feature set. While specific feature importance varies with the temporal window (detailed in Figure \ref{fig:sensitivity_vertical}), variables related to temporal cycles (e.g., \textit{hour}, \textit{day\_of\_year}) and key technical indicators (e.g., \textit{MACD}, \textit{Bollinger Bands}) consistently emerge as significant predictors. This confirms that our methodology's strength lies in the synergistic combination of both temporal and technical information, creating a well-distributed and resilient predictive model.}
+
+% --- OPÇÃO 2: Gráfico Vertical Detalhado (Use figure* para ocupar as duas colunas) ---
+\begin{figure*}[t!]
+\centering
+\includegraphics[width=\textwidth]{sensitivity_vertical_final.png}
+\caption{Comparative Sensitivity Analysis of Top Features. The figure displays the most influential features for each feature set across the 5-min, 15-min, and 1-hour granularities, grouped by temporal window. The height of the bar indicates the feature's importance (sensitivity). This visualization highlights how the predictive drivers change with temporal aggregation and which features are most critical for each methodology.}
+\label{fig:sensitivity_vertical}
+\end{figure*}
+
+\hl{In summary, this sensitivity analysis provides strong empirical evidence for the robustness of our proposed methodology. The model not only achieves state-of-the-art accuracy but does so with a distributed and stable feature set, making it less susceptible to shifts in market dynamics or noise in individual indicators. This addresses the reviewer's concern by demonstrating that the model's high performance is not an artifact of a few fragile variables but the result of a well-constructed, resilient feature engineering approach.}
